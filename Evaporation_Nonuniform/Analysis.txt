@@ -1,0 +1,53 @@
+20201221:
+1. function M1, M2, N1, N2 is checked to be right.
+2. function LegendreP and GegenC is checked to be right.
+3. function J and Ja are checked to be right.
+4. From the numerical test, dJda is correct which implies that Ja is correct.
+5. From the numerical test, dbcdt needs to be revisited (5% error).
+6. From the numerical test, Vbc appears to be right.
+7. From the numerical test, psi_bc is not correct. However, when we refine our grid, psi_bc appears to be correct.
+
+20201222:
+1. J is tested to be right.
+2. dbcdt is tested to be wrong with 10% error. However, it may due to less integration terms.
+3. From the numerical test, errors in Vbc appears to be from the errors in dbcdt.
+4. From the numerical test, errors in psi_bc is due to errors in dbcdt.
+5. From the numerical test, errors in psi_bc_bar is due to errors in psi_bc.
+6. Ja, dJda appear to be correct.
+
+7. K and K_bar is hard to check due to less integral terms, however, their expression is checked to be right.
+
+Overall, we checked that the terms in "UniformEvaporationChecker.jl" should be all correct.
+
+20201223:
+By the current results for 90 degree diffusive evaporation and comparing it to uniform evaporation, we found:
+1. da1 is set to be 0.001 for getting accurate integration for correct results.
+2. Most of the inaccuracy appear near the surface, which can be approximated by surface stream function.
+3. Another inaccuracy appears at r near 0.88, which is the location of maximum stream function.
+3.5 psi_bc is correct and psi_bc_bar is correct.
+4. Accuracy in calculating K, K_bar don't match.
+4.1 The mismatch in K is due to less alpha terms.
+4.2 The mismatch in K_bar is still unkonw.
+5. By numerical testing, dJda is accurate.
+
+20201224:
+1. The mismatch in K and K_bar in 90 degree case is inevitable cause:
+1.1 one case is based on decay in edge assumption and the other one is based on uniform evaporation.
+1.2 the convergence of K is strongly dependent on the value of psi_bc and converges very slowly, while we cannot have too many terms in alpha direction.
+1.3 K_bar is convergent but it's value is determined be the edge decay assumption strongly.
+
+Comparison:
+bc = 90 degree;
+Maximum stream function value = 0.25, appears at r = 0.87 on surface, a = 1.3331
+
+Summary:
+1. It has been checked that the code before calculating K and K_bar is correct!
+2. Calculating of K is hard to converge since its expression is hard to reach 0 with small a (like a = 100).
+3. Calculating of K_bar is not easy to match theoritical value due to evaporation is assumed to decay after a > 7.
+3.5. Calculation of K and K_bar at b=90 cannot match the theoretical value either due to 2 or 3 or maybe other reasons.
+4. It has been proved that a = 20 with da = 0.001 is a good value set for calculating stream function with accepted tolerance.
+5. a = 50 is not a good value for calculating stream function.
+5.1 Good value of a for calculating stream function is 7 < a <20, including 7 and 20.
+5.1 However, with a increasing, the spuriou oscillation of stream function near the drop surface enlarges.
+5.2 Thus, 7 or 7.1 is suggested in calculation.
+6. The above statement is also valid for assumption: when a > 7, J = J(a=7). And the results by this assumption is almost the same if we assume exponetially decay.
