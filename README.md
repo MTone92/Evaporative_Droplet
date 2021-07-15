@@ -1,5 +1,5 @@
 # Evaporative_Droplet
-This project is designed for calculating the stream function and draw streamlines in droplets induced by evaporation. **Uniform evaporation** and **Nonuniform evaporation** have been coded to calculate the stream function where the uniform mass flux and diffusive mass flux on the droplet surface are considered as boundary conditions, respectively.
+This project is designed for calculating the stream function and draw streamlines in droplets induced by evaporation. **Uniform evaporation** and **Nonuniform evaporation** have been coded to calculate the stream function where the uniform mass flux and diffusive mass flux on the droplet surface are considered as boundary conditions, respectively. These codes can be regarded as the reproduction of the main framework of paper [Analytical solution for Stokes flow inside an evaporating sessile drop: Spherical and cylindrical cap shapes](https://aip.scitation.org/doi/full/10.1063/1.3112002).
 
 ## Evaporation_Uniform
 The main program for this folder is ```UniformEvporation.m``` which calls other ```*.m``` files as functions and finish the calculation, store the results as a **.mat** file.
